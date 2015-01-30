@@ -1,0 +1,336 @@
+:next_link: 01_valores
+:load_files: ["js/intro.js"]
+
+= Introdução =
+
+O objetivo desse livro é fazer com o que ((computador))es façam o que
+nós queremos que eles façam. Computadores são como chaves de fenda
+hoje em dia, porém com muito mais complexidade embutida, além de
+serem mais difícil de operar e entender. Muitas pessoas os veêm como
+uma estranha ameaça alienígena.
+
+image::img/generated/computer.png[alt="Se comunicando com computadores"]
+
+
+(((interface gráfica de usuário)))Nós encontramos duas formas
+eficientes de superar os desafios da comunicação entre nós:
+organismos biológicos frágeis com um talento para o raciocínio
+social e espacial, e o computador: um insensível manipulador de
+dados sem sentido. O primeiro caminho é apelar para o nosso senso
+de mundo físico, e construir interfaces que espelham esse mundo,
+nos permitindo manipular formas na tela com nossos dedos.
+Isso funciona muito bem para uma básica interação homem-máquina.
+
+(((linguagem de programação)))Infelizmente ainda não encontramos
+uma boa maneira pra usar a abordagem de "apontar-e-clicar" para
+conectar coisas que o designer de interface não previu ao computador.
+Para interfaces abertas, como instruir o computador para realizar
+tarefas arbitrárias, nós tivemos mais sorte com uma abordagem que faz
+uso de nosso talento para a linguagem: ensinar um idioma a máquina.
+
+(((linguagem humana)))(((expressividade)))As linguagens humanas
+contém palavras e sentenças que podem ser combinadas de diferentes
+formas, nos permitindo dizer muitas coisas diferentes. As linguagens
+computacionais, que de fato são menos fexíveis em sua gramática,
+seguem um princípio similar.
+
+(((Javascript,disponibilidade do)))(((computação informal)))Computação
+informal se tornou muito mais difundida nos últimos vinte anos, e
+linguagens baseadas em interfaces, que um dia já foram a única maneira
+pela qual pessoas interagiam com computadores, foram em grande parte
+substituídas pela interfaces gráficas. Mas elas ainda estão lá, se
+você souber aonde procurar. Uma linguagem em especial, _JavaScript_,
+está presente em praticamente todos os ((navegadores)) web , e,
+portanto está disponível na grande maioria dos dispositivos.
+
+indexsee:[navegador web,navegador]Este livro tem a intenção de
+familiarizar você com com essa linguagem o bastante, ao ponto
+de que você consiga que o computador realize as tarefas que você
+quiser.
+
+== Programando ==
+
+[quote, Confúcius]
+____
+(((Confucius)))I do not enlighten those who are not eager to learn,
+nor arouse those who are not anxious to give an explanation
+themselves. If I have presented one corner of the square and they
+cannot come back to me with the other three, I should not go over the
+points again.
+____
+
+(((programar,dificuldade de)))Além de explicar JavaScript, eu também
+quero introduzir os princípios básicos de programação. Pragramar,
+de fato, é difícil. As regras fundamentais são tipicamente simples e
+claras. Mas os programas, construído em cima dessas regras básicas,
+tendem a ser complexos o suficiente ao ponto de criar suas prórpias
+regras e complexidade. De certa forma, você está construindo seu próprio
+labirinto, e se não tomar o devido cuidado, poderá ficar perdido nele.
+
+(((aprendizagem)))Haverão momentos em que ler este livro será terrivelmente
+frustrante. Se você é novo em programação, terá muito material para
+digerir. Muito desse material será então _combinado_ de forma a exigir que
+você faça conexões adicionais.
+
+Cabe a você fazer esforço necessário. Quando você sentir que está muito
+difícil acompanhar esse livro, não tire conclusões precipitadas sobre
+as suas capacidades. Você está indo muito bem. Tire uma folga, releia
+algum material, e _sempre_ tenha certeza de que leu e entendeu os
+programas de exemplo e os ((exercícios)). Aprender é uma tarefa difícil,
+mas tudo que você aprende é seu, e tornará o próximo passo do seu
+aprendizado mais fácil.
+
+[quote, Joseph Weizenbaum, Computer Power and Human Reason]
+____
+(((Weizenbaum+++,+++ Joseph)))The computer programmer is a creator of
+universes for which he [sic] alone is responsible. Universes of virtually
+unlimited complexity can be created in the form of computer programs.
+____
+
+(((programa,a natureza de um)))(((informação)))Um programa é muitas
+coisas. É um bloco de texto digitado por um programador, é a força
+direta que faz com que o computador faça o que ele faz, é
+informação na memória do computador, e ainda controla as ações
+executadas nesta mesma memória. Analogias que tentam comparar programas
+a objetos que estamos familirizados tendem a ficar aquém de uma boa
+explicação. A que se encaixa melhor, diz, de forma superficial,
+que um programa é uma máquina abstrata. E essa máquina possui muitas
+peças soltas, e para fazer com que todas essas partes fiquem
+juntas, nós temos que considerar todas as formas em que essas
+partes se interconectam e contribuem para o funcionamento em conjunto.
+
+(((computador)))O computador é uma máquina construída para abrigar
+essas máquinas asbtratas. Os computadores, por si só, só conseguem
+fazer tarefas banais. A razão pela qual eles são tão úteis, é que
+eles conseguem fazer essas tarefas de uma maneira incrivelmente
+rápida. Um programa pode, engenhosamente, combinar enormes
+quantidades dessas simples ações para produzir coisas muito
+mais complicadas.
+
+(((programar, prazer em)))Para alguns de nós, escrever programas de
+computador é um jogo fascinante. Um programa é um edifício de
+pensamentos. Sem custos para construir, não tem peso e cresce
+facilmente sob as nossas mãos.
+
+Se nós não tomarmos cuidado, seu tamanho e ((complexidade)) vão crescer
+e ficar fora de controle, confundindo até mesmo a pessoa que o criou.
+Manter os programas sob controle é o principal problema em programar.
+Quando um programa funciona, é lindo. A arte de programar é a
+hablidade de controlar a complexidade. O grande programa é subjugado
+de forma simples em sua complexidade.
+
+(((estilo de programar)))(((melhores práticas)))Alguns programadores
+acreditam que a complexidade é melhor gerenciada usando somente um
+pequeno conjunto de técnicas bem definidas em seus programas. Eles
+definiram regras rígidas (_“boas práticas”_) prescrevendo a forma que os
+programas devem ter, e os mais zelosos dentre eles vão considerar
+aqueles que saem dessa pequena zona de segurança _maus_ programadores.
+
+(((experimentos)))(((aprendizado)))Que hostilidade para a riqueza do
+programar, tentar reduzir a algo simples e previsível, colocando um
+tabu em todos os lindos e misteriosos programas! O horizonte de
+técnicas de programação é enorme, fascinante em sua diversidade, e
+muito ainda há para se explorar. É certamente perigoso ir por esse
+caminho, atraindo o programador inexperiente para todos os tipos de
+confusão, isso quer dizer que você deve prosseguir com cuidado e
+manter seus conhecimentos sobre você. À medida que você aprende,
+sempre haverão novos desafios e novo território a explorar.
+Programadores que se recusam a explorar ficam estagnados, esqueçem
+o prazer, e ficam enjoados do seu ofício.
+
+== A importância da linguagem ==
+
+(((linguagem de programação)))(((código de máquina)))
+(((informação binária)))No início, quando a computação nasceu, não
+existiam linguagens de programação. Os programas eram representados
+mais ou menos da seguinte forma:
+
+----
+00110001 00000000 00000000
+00110001 00000001 00000001
+00110011 00000001 00000010
+01010001 00001011 00000010
+00100010 00000010 00001000
+01000011 00000001 00000000
+01000001 00000001 00000001
+00010000 00000010 00000000
+01100010 00000000 00000000
+----
+
+(((programação,história da)))(((cartão perfurado)))(((complexidade)))
+Este bolo de código em dígitos acima é um programa para somar números
+de 1 a 10 e impimir o resultado `(1 + 2 + ... + 10 = 55)`. Ele pode
+ser executado numa máquina hipotéticamente simples. Para programar
+os computadores antigos, foi necessário definir grandes conjuntos
+de interruptores posicionados corretamente, ou perfurar papelões
+em tiras e usá-los para alimentar o computador. Você pode imaginar
+como esse procedimento era itediante e passível de erros. Mesmo
+a escrita de programas muito simples requeriam muita perícia
+e disciplina. Programas mais complexos eram quase inconcebíveis.
+
+(((bit)))(((mago (poderoso))))É claro que, gravar manualmente
+esse padrão arcano de bits (os uns e zeros) deu a programador um
+uma grande impressão de ser um poderoso mago. E isso vale a pena
+em termos de satisfação no trabalho.
+
+(((memória)))(((instrução)))Cada linha do programa contém uma única
+instrução. Este programa pode ser escrito em português da seguinte
+forma:
+
+[source,text/plain]
+----
+1. Guarde o número 0 na posição de memória 0.
+2. Guarde o número 1 na posição de memória 1.
+3. Guarde o valor na posição de memória 1 na posição de memória 2.
+4. Subtraia o número 11 do valor guardado na posição de memória 2.
+5. Se o valor na posição de memória 2 for o número 0, pule para a
+    instrução 9.
+6. Adicione o valor guardado na posição de memória 1 ao valor
+    guardado na posição de memória 0.
+7. Adicione o número 1 ao valor guardado na posição de memória 1.
+8. Pule de volta para a instrução 3.
+9. Reproduza o valor guardado na posição de memória 0.
+----
+
+(((legibilidade)))(((nomeação)))(((variável)))Embora as instruções
+acima sejam muito mais legíveis do que aquela outra sopa de bits que
+vimos anteriormente, ainda são um pouco desagradáveis. Seria melhor
+usar nomes ao invés de números para as instruções e posições de
+memória:
+
+[source,text/plain]
+----
+ Defina “total” como 0
+ Defina "count" como 1
+[início]
+ Defina “compare” como “count”
+ Subtraia 11 de “compare”
+ Se “compare” é zero, vá para [fim]
+ Adicione “count” a “total”
+ Adicione 1 a “count”
+ Pule de volta para [início]
+[fim]
+ Reproduza “total”
+----
+
+(((laço)))(((pular)))(((exemplo de soma)))Agora ficou bem fácil de
+ver como o programa funciona. Você entendeu? As duas primeiras
+linhas gravam nas posições da memória um valor inicial: `total` será
+usado para montar o resultado da computação, e `count` mantém o
+controle sobre o número de vezes que estamos fazendo a operação.
+As linhas usando `compare` são provavelmente as mais estranhas para
+você agora. O que o programa quer fazer é ver se `count` é igual a 11
+para decidir se ele já pode parar. Por conta da nossa máquina
+hipotética ser muito primitiva, ela sé pode testar se um número é
+zero e fazer a decisão (pular) basedo nisso. Então, ele usa a posição
+de memória nomeada `compare` para computar o valor de `count - 11` e
+fazer a decisão baseado nesse valor. As próximas duas linhas adicionam
+o valor de `count` ao resultado e adiciona 1 a `count` toda vez que o
+programa decide que ainda não chegou a 11.
+
+Aqui está o mesmo programa em JavaScript:
+
+[source,javascript]
+----
+var total = 0, count = 1;
+while (count <= 10) {
+  total += count;
+  count += 1;
+}
+console.log(total);
+// → 55
+----
+
+(((laço while)))(((laço)))Essa versão apresenta algumas melhorias. A mais
+importante delas, é que não é mais necessário especificar a maneira que o
+programa pula de trás pra frente. A construção da linguagem `while` toma
+conta de fazer isso por nós. Ela vai continuar executando o bloco
+(envolvido em chaves) enquanto a condição que foi dada permanecer verdadeira.
+Essa condição é `count <= 10`, o que significa que “count é menor ou igual a
+10”. Nós não temos mais que criar um valor temporário e compará-lo a 0, o que
+era um detalhe incômodo. Parte do poder das linguagens de programção é que elas
+tomam conta desses detalhes incômodos por nós.
+
+(((console.log)))No final do programa que escrevemos, depois de finalizado o
+`while`, a operação `console.log` é aplicada para que o resultado seja escrito
+na saída do programa.
+
+(((função sum)))(((função
+range)))(((abstração)))(((função)))Finalmente, aqui está o que o nosso programa
+poderia ser se nós tivéssemos as operações `range` e `sum` disponíveis, as quais
+respectivamente, cria uma ((coleção)) de números num determinado alcançe e
+calcula a soma dessa coleção:
+
+// start_code
+
+[source,javascript]
+----
+console.log(sum(range(1, 10)));
+// → 55
+----
+
+(((legibilidade)))A moral da história é que o mesmo programa pode ser
+escrito de diversas maneiras, em expressões longas, curtas, legíveis
+ou não legíveis. A primeira versão do nosso programa era extremamente
+obscura, enquanto que a última versão é quase somente Inglês básico:
+`log` a `sum` do `range` de números de 1 a 10, ou em Português:
+"logue a soma da coleção de números de 1 a 10". (Nós vamos ver nos
+link:04_dados.html#dados[próximos capítulos] como construir operações
+como `sum` e `range`.)
+
+(((linguagem de programação,o poder da)))(((composability)))Uma boa linguagem
+de programação ajuda os programadores permitindo que eles falem sobre
+as ações que o computador tem que tomar numa camada superficial.
+Isso ajuda a omitir muitos detalhes desinsteressantes, provendo construção
+de blocos convenientes (como por exemplo `while` e `console.log`), permitindo
+que você defina seus próprios blocos (como `sum` e `range`), e fazendo com
+que esses blocos sejam de fácil composição.
+
+== O que é JavaScript? ==
+
+indexsee:[WWW,World Wide Web] indexsee:[Web,World Wide Web](((hitória)))(((Netscape)))(((navagador)))(((aplicação web)))(((JavaScript)))(((JavaScript,história do)))(((World Wide
+Web))) JavaScript foi introduzido em 1995 como uma maneira de
+adicionar programas a páginas web no navegador Netscape
+Navigator. Desde então, a linguagem vem sendo adotada por
+todos os principais navegadores gráficos web. Isso tornou
+possível modernas ãplicações web, aplicações nas quais
+você pode interagir diretamente, sem recarregar a página
+a cada ação. Mas também é usado nos websites tradicionais
+para prover várias formas de interatividade e inteligência.
+
+(((Java)))(((nomeação)))É importante notar que JavaScript não
+tem quase nada a ver com a linguagem de programação chamada Java.
+O nome parecido foi concebido devido a considerações de marketing,
+e não por um bom julgamento. Quando JavaScript foi introduzido, a
+linguagem Java estava sendo viralizada de forma pesada e ganhando
+muita popularidade. Alguém pensou que seria uma boa ideia pegar
+carona nesse sucesso. Agora, nós estamos presos nesse nome.
+
+(((ECMAScript)))(((compatilbilidade)))Depois de ser adotada fora
+do Netscape, um documento ((padrão)) foi escrito para descrever
+a maneira como a linguagem JavaScript deveria funcionar para ter
+certeza de que várias peças de software que diziam suportar
+JavaScript estariam, de fato, falando a mesma linguagem.
+
+(((JavaScript,fraquezas do)))(((depuração)))Existem aqueles que
+vão dizer coisas _terríveis_ sobre a linguagem JavaScript. Muitas
+coisas serão verdadeiras. Quando eu fui obrigado a escrever algo
+em JavaScript pela primeira vez, eu rapidamente passei a
+desprezá-lo. Ele aceitava quase tudo que eu escrevia, mas
+interpretava de uma maneira completamente diferente do que eu
+queria. Isso tem muito a ver com o fato de que eu não tinha a
+menor ideia do que estava fazendo, é claro, mas existe um
+problema real aqui: o JavaScript é ridiculamente liberal quando
+se trata do que ele permite. O conceito do projeto era ser de fácil
+aprendizagem para iniciantes. Na realidade, este conceito acaba
+tornando mais difícil encontrar problemas nos seus programas porque
+o sistema não os aponta para você.
+
+(((JavaScript,felixibilidade do)))(((flexibilidade)))Essa
+flexibilidade também tem suas vantagens. Ela deixa espao para
+um grande leque de técnicas que são impossíveis em linguagens mais
+rígidas, e você vai ver, por exemplo, no
+link:10_modulos.html#modulos[Capítulo 10], que isso pode ser usado para
+superar algumas deficiências do JavaScript. Depois de ((aprender)) a
+linguagem devidamente e trabalhar com ela por um tempo, eu aprendi
+a _gostar_ do JavaScript.
