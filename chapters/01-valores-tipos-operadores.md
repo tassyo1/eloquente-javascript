@@ -1,279 +1,254 @@
 # Valores, Tipos e Operadores
 
-Dentro do mundo do computador, há somente dados. Nós podemos ler dados, modificar dados, criar dados - mas coisas que não são representadas por dados simplesmente não existem. Todos estes dados são armazenados em longas sequências de bits, e isso portanto é fundamentalmente parecido.
+> Abaixo da parte superficial da máquina, o programa se movimenta. Sem esforço, ele se expande e se contrai. Com grande harmonia, os elétrons se espalham e se reagrupam. As formas no monitor são como ondulações na água. A essência permanece invisível por baixo.
+>
+> — Master Yuan-Ma, The Book of Programming
 
-Bits podem ser qualquer tipo de coisa com 2 valores, usualmente descrito como 0 e 1. Dentro do computador, eles tomam formas como uma carga elétrica alta ou baixa, um forte ou fraco sinal, ou um ponto brilhante ou sem brilho na superfície de um CD. Qualquer pedaço de uma discreta informação, pode ser reduzida para uma sequência de 0 e 1, e então representanda por bits.
+Dentro do mundo do computador, há somente dados. Você pode ler, modificar e criar novos dados, entretanto, qualquer coisa que não seja um dado simplesmente não existe. Todos os dados são armazenados em longas sequências de bits e são, fundamentalmente, parecidos.
 
-Como um exemplo, pense sobre a maneira que o número 13 pode ser armazenado em bits. A forma usual de se fazer esta analogia é a forma de escrevermos números decimais, mas ao invés de 10 dígitos, temos apenas 2. E, ao invés de o valor de um dígito aumentar dez vezes sobre o dígito após ele, o valor aumenta por um fator 2. Estes são os bits que compõem o número treze, com o valor dos dígitos mostrados abaixo deles:
+Bits podem ser qualquer tipo de coisa representada por dois valores, normalmente descritos como zeros e uns. Dentro do computador, eles representam formas tais como uma carga elétrica alta ou baixa, um sinal forte ou fraco ou até um ponto na superfície de um CD que possui brilho ou não. Qualquer pedaço de informação pode ser reduzido a uma sequência de zeros e uns e, então, representados por bits.
+
+Como um exemplo, pense sobre a maneira que o número 13 pode ser armazenado em bits. A forma usual de se fazer esta analogia é a forma de escrevermos números decimais, mas ao invés de 10 dígitos, temos apenas 2. E, ao invés de o valor de um dígito aumentar dez vezes sobre o dígito após ele, o valor aumenta por um fator de 2. Estes são os bits que compõem o número treze, com o valor dos dígitos mostrados abaixo deles:
 
 ```
   0   0   0   0   1   1   0   1
 128  64  32  16   8   4   2   1
 ```
 
-Então este é o 00001101, ou 8 + 4 + 1, que equivale a 13.
+Assim, este é o número binário 00001101, ou 8 + 4 + 1, que equivale a 13.
 
 ## Valores
 
-Imagine um mar de bits. Um oceano deles. Um computador moderno tem mais de trinta bilhões de bits em seu armazenamento volátil (memória RAM). De armazenamento não-volátil (o disco rígido ou equivalente) tende a ter uma ordem de magnitude ainda maior.
+Imagine um mar de bits, um oceano deles. Um computador moderno possui mais de trinta bilhões de bits em seu armazenamento volátil de dados. Já em armazenamento de dados não voláteis, sendo eles o disco rígido ou algo equivalente, tende a ter uma ordem de magnitude ainda maior.
 
 ![Bit Sea](../img/bit-sea.png)
 
-Para trabalhar com estes sem se perder, nós temos que estruturá-los de alguma forma. Uma forma de fazer é agrupá-los dentro de pedaços que representam uma simples parte de informação. Em um ambiente JavaScript, todo os dados são separados em coisas chamadas *valores*, grupos de bits que representam um pedaço de dado coerente.
+Para que seja possível trabalhar com tais quantidades de bits sem ficar perdido, você pode separá-los em partes que representam pedaços de informação. No ambiente JavaScript, essas partes são chamadas de _valores_. Embora todos os valores sejam compostos por bits, cada valor exerce um papel diferente e todo valor possui um tipo que determina o seu papel. Existem seis tipos básicos de valores no JavaScript: números, strings, Booleanos, objetos, funções e valores indefinidos.
 
-Embora todos os valores sejam feitos da mesma coisa uniforme, eles desempenham papéis diferentes. Todo valor tem um tipo, que determina o tipo de papel que desempenha. Temos seis tipos básicos de valores no JavaScript: números, strings, booleans, objetos, funções e valores indefinidos.
+Para criar um valor, você deve simplesmente invocar o seu nome. Isso é bastante conveniente, pois você não precisa de nenhum material extra para construí-los e muito menos ter que pagar algo por eles. Você só chama por ele e pronto, você o tem. É claro que eles não são criados do nada. Todo valor precisa estar armazenado em algum lugar e, se você quiser usar uma quantidade enorme deles ao mesmo tempo, você pode acabar ficando sem bits. Felizmente, esse é um problema apenas se você precisa deles simultaneamente. A medida que você não utiliza um valor, ele será dissipado, fazendo com que seus bits sejam reciclados, disponibilizando-os para serem usados na construção de outros novos valores.
 
-> Em inglês: [number, string, boolean, object, function, undefined]
-
-Para criar um valor, deve-se simplesmente invocar seu nome. Isto é muito conveniente. Você não tem que recolher material para construir seus valores ou pagar por eles; você só chama por um, e pronto, você o tem. Eles não são criados com ar, obviamente. Todo valor tem que ser armazenado em algum lugar, e se você quer usar uma quantidade gigante deles, ao mesmo tempo você deve rodar sobre os bits. Felizmente, este é um problema somente se você os quiser simultaneamente. Assim que você não usar mais um valor, ele será dissipado, deixando para trás os bits para serem reciclados e se tornarem materiais para a próxima geração de valores.
-
-Este capítulo introduz os elementos atômicos dos programas JavaScript: Simples tipos de valores, e operadores que podem atuar em cada valor.
+Esse capítulo introduz os elementos que representam os átomos dos programas JavaScript, que são os simples tipos de valores e os operadores que podem atuar sobre eles.
 
 ## Números
 
-Valores do tipo *numbers* são, previsivelmente, valor numéricos. Em um programa JavaScript, eles são escritos usualmente assim:
+Valores do tipo _número_ são, sem muitas surpresas, valores numéricos. Em um programa JavaScript, eles são escritos assim:
 
-```javascript
-
+```js
 13
-
 ```
 
-Coloque isto em um programa, e isto vai gerar o padrão de bits para que o número 13 comece a existir dentro do computador.
+Coloque isso em um programa e isso fará com que padrões de bits referentes ao número 13 sejam criados e passe a existir dentro da memória do computador.
 
-O JavaScript usa um número fixo de bits, 64 deles, para armazenar um único valor numérico. Isto significa que existe uma quantidade limite de tipos diferentes de números que podem ser representados - há muitos padrões diferentes que você pode criar com 64 bits. O conjunto de números podem ser representados por N dígitos decimais é 10^N. Similarmente, o conjunto de números que podem ser representados por 64 dígitos binários é 2⁶⁴, que é mais ou menos 18 quintilhões (um 18 com 18 zeros após ele).
+O JavaScript utiliza um número fixo de bits, mais precisamente 64 deles, para armazenar um único valor numérico. Existem apenas algumas maneiras possíveis que você pode combinar esses 64 bits, ou seja, a quantidade de números diferentes que podem ser representados é limitada. Para um valor _N_ de dígitos decimais, a quantidade de números que pode ser representada é _10^N_ [TODO: arrumar exponencial]. De forma similar, dado 64 dígitos binários, você pode representar 2⁶⁴ número diferentes, que é aproximadamente 18  quintilhões (o número 18 com 18 zeros após ele). Isso é muito.
 
-Isto é muito. Números exponenciais tem o hábito de ficarem grandes. Já foi o tempo que as memórias eram pequenas e as pessoas tendiam a usar grupos de 8 ou 16 bits para representar estes números. Era fácil de acidentalmente "transbordarem" estes pequenos números. Hoje, temos o luxo de somente se preocupar quando realmente lidamos com números astronômicos.
+A memória do computador costumava ser bem menor e, por isso, as pessoas usavam grupos de 8 ou 16 bits para representar os números. Por isso, era muito fácil extrapolar essa capacidade de armazenamento tão pequena usando números que não cabiam nesse espaço. Hoje em dia, até os computadores pessoais possuem memória suficiente, possibilitando usar grupos de 64 bits, sendo apenas necessário se preocupar em exceder o espaço quando estiver lidando com números extremamente grandes.
 
-Todos os números abaixo de 18 quintilhões cabem no JavaScript *number*. Estes bits também armazenam números negativos, onde um destes sinais é usado para guardar o sinal do número. Uma grande questão é que números não inteiros podem ser representados. Para fazer isso, alguns bits são usados para guardar a posição do ponto decimal do número. O maior número não inteiro que pode ser armazenado está na faixa de 9 quadrilhões (15 zeros) - que continua muito grande.
+Entretanto, nem todos os números inteiros menores do que 18 quintilhões cabem em um número no JavaScript. Os bits também armazenam números negativos, sendo que um desses bits indica o sinal do número. Um grande problema é que números fracionários também precisam ser representados. Para fazer isso, alguns bits são usados para armazenar a posição do ponto decimal. Na realidade, o maior número inteiro que pode ser armazenado está na região de 9 quatrilhões (15 zeros), que ainda assim é extremamente grande.
 
-Números fracionados são escritos usando o ponto:
+Números fracionários são escritos usando um ponto.
 
-```javascript
-
+```js
 9.81
-
 ```
 
-Para grandes números ou números pequenos, podemos usar a notação científica adicionando um 'e', seguido do expoente:
+Para números muito grandes ou pequenos, você pode usar a notação científica adicionando um “e” (de “expoente”) seguido do valor do expoente:
 
-```javascript
-
+```js
 2.998e8
-
 ```
 
-Isto é 2.998 x 10⁸ = 299800000.
+Isso é 2.998 x 10⁸ = 299800000.
 
-Cálculos com números inteiros (também chamados *integers*) menores que os mencionados 9 quadrilhões são garantidos de sempre serem precisos. Infelizmente cálculos com números fracionários não são, geralmente. Como π (pi) não pode ser precisamente expresso por uma quantidade finita de dígitos decimais, vários números perdem a precisão quando somente 64 bits estão disponíveis para armazená-los. Isto é uma vergonha, porém causa problemas somente em situações muito específicas. A coisa importante é estar ciente disto e tratar números fracionários digitais como aproximações, não como valores precisos.
+Cálculos usando números inteiros menores que os 9 quadrilhões mencionados, serão com certeza precisos. Infelizmente, cálculos com número fracionários normalmente não são precisos. Da mesma forma que π (pi) não pode ser expresso de forma precisa por uma quantidade finita de dígitos decimais, muitos números perdem sua precisão quando existem apenas 64 bits disponíveis para armazená-los. Isso é vergonhoso, porém causa problemas apenas em algumas situações específicas. O mais importante é estar ciente dessa limitação e tratar números fracionários como aproximações e não como valores precisos.
 
 ## Aritmética
 
-A principal coisa a se fazer com números é aritmética. Operações aritméticas como adição e multiplicação pegam o valor de dois números e produzem um novo número a partir deles. Aqui vemos como eles são no JavaScript:
+A principal coisa para se fazer com números são cálculos aritméticos. As operações como adição ou multiplicação recebem dois valores numéricos e produzem um novo número a partir deles. Elas são representadas dessa forma no JavaScript:
 
-```javascript
-
+```js
 100 + 4 * 11
-
 ```
 
-Os símbolos `+` e `*` são chamados *operadores*. O primeiro representa adição, e o segundo representa multiplicação. Colocando um operador entre 2 valores faz com que se aplique o mesmo, produzindo um novo valor.
+Os símbolos `+` e `*` são chamados de _operadores_. O primeiro é referente à adição e o segundo à multiplicação. Colocar um operador entre dois valores irá aplicá-lo a esses valores e produzirá um novo valor.
 
-O próximo exemplo significa "adicione 4 e 100, e multiplique o resultado por 11", ou é a multiplicação feita antes da adição? Como você deve ter pensado, a multiplicação acontece primeiro. Mas, como na matemática, isto pode ser mudado envolvendo a adição com os parênteses:
+O significado do exemplo anterior é “adicione 4 e 100 e, em seguida, multiplique esse resultado por 11” ou a multiplicação é realizada antes da adição? Como você deve ter pensado, a multiplicação acontece primeiro. Entretanto, como na matemática, você pode mudar esse comportamento envolvendo a adição com parênteses.
 
 ```javascript
-
 (100 + 4) * 11
-
 ```
 
-Para subtração, este é o operador `-`, e para a divisão usamos este operador `/`.
+Para subtração existe o operador `-` e para a divisão usamos o operador `/`.
 
-Quando operadores aparecem juntos sem parênteses, a ordem que eles vão ser aplicados é determinada pela *precedência* dos operadores. O exemplo mostra que a multiplicação vem antes da adição. `/` tem a mesma precedência de `*`. Igualmente para `+` e `-`. Quando múltiplos operadores com a mesma precedência estão próximos uns aos outros (como em `1 - 2 + 1`), eles são aplicados da esquerda para a direita.
+Quando os operadores aparecem juntos sem parêntesis, a ordem que eles serão aplicados é determinada pela _precedência_ deles. O exemplo mostra que a multiplicação ocorre antes da adição. O operador `/` possui a mesma precedência que `*` e, de forma similar, os operadores `+` e `-` possuem a mesma precedência entre si. Quando vários operadores de mesma precedência aparecem próximos uns aos outros, como por exemplo `1 - 2 + 1`, eles são aplicados da esquerda para a direita: `(1 - 2) + 1`.
 
-Estas regras de precedência não é algo que você deva se preocupar. Quando em dúvida, somente adicione parênteses.
+Essas regras de precedência não são algo que você deve se preocupar. Quando estiver em dúvida, apenas adicione os parênteses.
 
-Há mais um operador aritmético, que possivelmente é menos familiar. O símbolo `%` é usado para representar o *restante* da operação. `X % Y` é o restante da divisão de `X por Y`. Por exemplo, `314 % 100` produz `14`, e `144 % 12` nos dá `0`. A precedência deste operador é igual a da multiplicação e divisão. Você também pode ver este operador sendo referido como "modulo" (porém tecnicamente "restante" é mais preciso).
+Existe mais um operador aritmético que você talvez não reconheça imediatamente. O símbolo `%` é usado para representar a operação de _resto_. `X % Y` é o resto da divisão de `X` por `Y`. Por exemplo, `314 % 100` produz `14` e `144 % 12` produz `0`. A precedência do operador resto é a mesma da multiplicação e divisão. Você ouvirá com frequência esse operador ser chamado de _modulo_ mas, tecnicamente falando, _resto_ é o termo mais preciso.
 
 ## Números Especiais
 
-Existem 3 valores especiais no JavaScript que são considerados números, mas não comportam-se como números normais.
+Existem três valores especiais no JavaScript que são considerados números, mas não se comportam como números normais.
 
-Os dois primeiros são `Infinity` e `-Infinity`, que são usados para representar os infinitos positivo e negativo. `Infinity - 1` continua sendo `Infinity`, e assim por diante. Mas não ponha muita confiança neste tipo de computação *baseada em infinito*, pois é uma matemática pesada, e vai rapidamente levar para nosso próximo número especial: `NaN`.
+Os dois primeiros são `Infinity` e `-Infinity`, que são usados para representar os infinitos positivo e negativo. O cálculo `Infinity - 1` continua sendo `Infinity`, assim como qualquer outra variação dessa conta. Entretanto, não confie muito em cálculos baseados no valor infinito, pois esse valor não é matematicamente sólido, e rapidamente nos levará ao próximo número especial: `NaN`.
 
-`NaN` significa "not a number" (não é um número). Você obtém isso quando declara `0 / 0` (zero dividido por zero), `Infinity - Infinity`, ou qualquer número de outra operação numérica que não produz um preciso e significante valor.
+`NaN` é a abreviação de “_not a number_” (não é um número), mesmo sabendo que ele é um valor do tipo número. Você receberá esse valor como resultado quando, por exemplo, tentar calcular `0 / 0` (zero dividido por zero), `Infinity - Infinity` ou, então, realizar quaisquer outras operações numéricas que não resultem em um número preciso e significativo.
 
 ## Strings
 
-O próximo tipo básico de dado é a *string*. Strings são usadas para representar texto. Elas são escritas delimitando seu conteúdo entre aspas:
+O próximo tipo básico de dado é a _string_. _Strings_ são usadas para representar texto, e são escritas delimitando o seu conteúdo entre aspas.
 
-```javascript
-
+```js
 "Patch my boat with chewing gum"
 'Monkeys wave goodbye'
-
 ```
 
-Ambas as aspas simples e duplas podem ser usadas para marcar strings - contato que as aspas no início e no fim da string combinem.
+Ambas as aspas simples e duplas podem ser usadas para representar _strings_, contanto que as aspas abertas sejam iguais no início e no fim.
 
-Quase tudo pode ser colocado entre aspas, e o JavaScript vai fazer um valor de string com isso. Mas alguns caracteres são difíceis. Você pode imaginar como colocar aspas entre aspas deve ser difícil. Novas linhas, as coisas que você obtém quando pressiona `enter`, também não podem ser colocadas entre aspas - a string tem que estar em uma linha única.
+Quase tudo pode ser colocado entre aspas, e o JavaScript criará um valor do tipo _string_ com o que quer que seja. Entretanto, alguns caracteres são mais difíceis. Você pode imaginar como deve ser complicado colocar aspas dentro de aspas. Além disso, os caracteres _newlines_ (quebra de linhas, usados quando você aperta _Enter_), também não podem ser colocados entre aspas. As _strings_ devem permanecer em uma única linha.
 
-Para ser capaz de ter estes caracteres em uma string, a convenção seguinte é usada: Sempre que um barra invertida `\` é encontrada dentro do texto entre aspas, isto indica que o caracter depois desta tem um significado especial. Uma aspa precedida de uma barra invertida não vai findar a string, mas ser parte dela. Quando um caracter 'n' correr depois de uma barra invertida, será interpretado como uma nova linha. Similarmente, um 't' depois da barra invertida significa o caracter tab. Veja a string seguinte:
+Para que seja possível incluir tais caracteres em uma _string_, a seguinte notação é utilizada: toda vez que um caractere de barra invertida (`\`) for encontrado dentro de um texto entre aspas, ele indicará que o caractere seguinte possui um significado especial. Isso é chamado de _escapar_ o caractere. Uma aspa que se encontra logo após uma barra invertida não representará o fim da _string_ e, ao invés disso, será considerada como parte do texto dela. Quando um caractere `n` aparecer após uma barra invertida, ele será interpretado como uma quebra de linha e, de forma similar, um `t` significará um caractere de tabulação. Considere a seguinte _string_:
 
-```
+```js
 "This is the first line\nAnd this is the second"
-
 ```
 
-O verdadeiro texto contido é:
+O texto na verdade será:
 
 ```
 This is the first line
 And this is the second
-
 ```
 
-Existe, obviamente, situações onde você quer uma barra invertida em uma string apenas como uma barra invertida. não um código especial. Se duas barras invertidas estiverem seguidas uma da outra, elas se anulam, e somente uma vai ser deixada no valor da string resultante. Assim é como a string `A newline character is written like "\n" can be written`:
+Existe, obviamente, situações nas quais você vai querer que a barra invertida em uma _string_ seja apenas uma barra invertida e não um código especial. Nesse caso, se duas barras invertidas estiverem seguidas uma da outra, elas se anulam e apenas uma será deixada no valor da _string_ resultante. Essa é a forma na qual a _string_ “`A newline character is written like “\n”.`” pode ser representada:
 
-```
+```js
 "A newline character is written like \"\\n\"."
-
 ```
 
-Strings não podem ser divididas, multiplicadas ou subtraídas, mas o operador `+` pode ser usado nelas. Ele não adiciona, mas concatena - ele cola duas strings unindo-as. A linha seguinte vai produzir a string `concatenate`:
+_Strings_ não podem ser divididas, multiplicadas nem subtraídas, entretanto, o operador `+` pode ser usado nelas. Ele não efetua a adição, mas _concatena_, ou seja, junta duas _strings_ em uma única _string_. O próximo exemplo produzirá a _string_ `"concatenate"`:
 
-```
+```js
 "con" + "cat" + "e" + "nate"
-
 ```
 
-Existem outras maneiras de manipular strings, que nós vamos discutir quando entrarmos nós métodos no capítulo 4.
+Existem outras maneiras de manipular as _strings_, as quais serão discutidas quando chegarmos aos métodos no [Capítulo 4](./04-estruturas-de-dados.md) [TODO:] Adicionar link correto com âncora para a sessão mencionada no texto original: http://eloquentjavascript.net/04_data.html#methods [/TODO]
 
 ## Operadores Unários
 
-Nem todos operadores são símbolos. Alguns são palavras escritas. Um exemplo é o operador `typeof`, que produz uma string com o valor do tipo dado para fornecido para avaliação.
+Nem todos os operadores são símbolos, sendo que alguns são escritos como palavras. Um exemplo é o operador `typeof`, que produz um valor do tipo _string_ contendo o nome do tipo do valor que você está verificando.
 
-```javascript
-
+```js
 console.log(typeof 4.5)
 // → number
 console.log(typeof "x")
 // → string
-
 ```
 
-Nós vamos usar `console.log` nos códigos exemplo para indicar que nós queremos ver o resultado da avaliação de algo. Quando você roda algum código, o valor produzido vai ser mostrado na tela - de alguma forma, dependendo do ambiente JavaScript que você usa para rodá-lo.
+Nós vamos usar `console.log` nos códigos de exemplo para indicar que desejamos ver o resultado da avaliação de algo. Quando você executar tais códigos, o valor produzido será mostrado na tela, entretanto, a forma como ele será apresentado vai depender do ambiente JavaScript que você usar para rodar os códigos.
 
-Os outros operadores que vimos sempre operam com 2 valores; `typeof` pega somente um. Operadores que usam 2 valores são chamados operadores *binários*, enquanto aqueles que pegam um são chamados operadores *unários*. O operador menos `-` pode ser usado como operador binário e unário.
+Todos os operadores que vimos operavam em dois valores, mas `typeof` espera um único valor. Operadores que usam dois valores são chamados de operadores _binários_, enquanto que aqueles que recebem apenas um, são chamados de operadores _unários_. O operador `-` pode ser usado tanto como binário quanto como unário.
 
-```javascript
-
+```js
 console.log(- (10 - 2))
 // → -8
-
 ```
 
 ## Valores Booleanos
 
-As vezes, você vai precisar de um valor que simplesmente distingue entre 2 possibilidades, "sim" ou "não", ou "ligado" e "desligado". Para isso o JavaScript tem um tipo *booleano*, que tem apenas dois valores, `true` e `false` (que são escritos com estas palavras mesmo).
+Você frequentemente precisará de um valor para distinguir entre duas possibilidades, como por exemplo “sim” e “não”, ou “ligado” e “desligado”. Para isso, o JavaScript possui o tipo _Booleano_, que tem apenas dois valores: verdadeiro e falso (que são escritos como `true` e `false` respectivamente).
 
 ### Comparações
 
-Aqui temos uma maneira de produzir valores booleanos:
+Essa é uma maneira de produzir valores Booleanos:
 
-```javascript
-
+```js
 console.log(3 > 2)
 // → true
 console.log(3 < 2)
 // → false
-
 ```
-Os sinais `>` e `<` são tradicionalmente símbolos para "é maior que" e "é menor que". Eles são operadores binários, e o resultado da aplicação deles é um valor booleano que indica se eles são verdadeiros neste caso.
 
-Strings podem ser comparadas da mesma forma:
+Os sinais `>` e `<` são tradicionalmente símbolos para representar “é maior que” e “é menor que” respectivamente. Eles são operadores binários, e o resultado da aplicação deles é um valor Booleano que indica se eles são verdadeiros nesse caso.
 
-```javascript
+_Strings_ podem ser comparadas da mesma forma.
 
+```js
 console.log("Aardvark" < "Zoroaster")
 // → true
-
 ```
 
-A maneira que as strings são ordenadas é mais ou menos alfabética: Letras maiúsculas são sempre "menores" que as minúsculas, então ` "Z" < "a" ` é `true`, e caracteres não alfabéticos ('!', '-', e assim por diante) são também incluídos na ordenação. A maneira real da comparação é feita baseada no padrão *Unicode*. Este padrão atribui um número a todo caracter virtual que pode ser usado, incluindo caracteres da Grécia, Arábia, Japão, Tamil e por ai vai. Ter estes números é prático para guardar strings dentro do computador - você pode representá-los como uma sequência de números. Quando se compara strings, o JavaScript vai sobre elas da esquerda para a direita, comparando os códigos numéricos dos caracteres um por um.
+A forma na qual as _strings_ são ordenadas é mais ou menos alfabética. Letras maiúsculas serão sempre “menores” que as minúsculas, portanto, `“Z” < “a”` é verdadeiro. Além disso, caracteres não alfabéticos (!, -, e assim por diante) também são incluídos nessa ordenação. A comparação de fato, é baseada no padrão _Unicode_, que atribui um número para todos os caracteres que você possa precisar, incluindo caracteres do Grego, Árabe, Japonês, Tâmil e por aí vai. Possuir tais números é útil para armazenar as _strings_ dentro do computador, pois faz com que seja possível representá-las como uma sequência de números. Quando comparamos _strings_, o JavaScript inicia da esquerda para a direita, comparando os códigos numéricos dos caracteres um por um.
 
-Outros operadores similares são `>=` (maior que ou igual a), `<=` (menor que ou igual a), `==` (igual a) e `!=` (não igual a).
+Outros operadores parecidos são `>=` (maior que ou igual a), `<=` (menor que ou igual a), `==` (igual a) e `!=` (não igual a).
 
-```javascript
-
+```js
 console.log("Itchy" != "Scratchy")
 // → true
-
 ```
 
-Há somente um valor no JavaScript que não é igual a ele mesmo, que é o `NaN` (not a number).
+Existe apenas um valor no JavaScript que não é igual a ele mesmo, que é o valor `NaN`. Ele significa _“not a number”_, que em português seria traduzido como “não é um número”.
 
-```javascript
-
+```js
 console.log(NaN == NaN)
 // → false
-
 ```
 
-`NaN` (not a number) supostamente define o resultado de *uma operação* sem sentido, e como tal, não será igual ao resultado de *outra operação* sem sentido.
+`NaN` é supostamente usado para indicar o resultado de alguma operação que não tenha sentido e, por isso, ele não será igual ao resultado de quaisquer _outras_ operações sem sentido.
 
 ## Operadores Lógicos
 
-Temos também algumas operações que podem ser aplicadas aos valores booleanos. O JavaScript suporta 3 operadores lógicos: *e*, *ou* ou *não*.
+Existem também operadores que podem ser aplicados aos valores Booleanos. O JavaScript dá suporte a três operadores lógicos: _and_, _or_ e _not_, que podem ser traduzidos para o português como _e_, _ou_ e _não_. Eles podem ser usados para "pensar" de forma lógica sobre Booleanos.
 
-O operador `&&` representa o **e** lógico. É um operador binário, e seu resultado é `true` (verdadeiro) somente se ambos os valores dados a ele forem `true`.
+O operador `&&` representa o valor lógico _and_ ou, em português, _e_. Ele é um operador binário, e seu resultado é apenas verdadeiro se ambos os valores dados à ele forem verdadeiros.
 
-```javascript
-
-console.log(true && false);
+```js
+console.log(true && false)
 // → false
-
-console.log(true && true);
+console.log(true && true)
 // → true
-
 ```
 
-O operador `||` denota ao **ou** lógico. Ele produz `true` se algum dos valores fornecidos for `true`:
+O operador `||` indica o valor lógico _or_ ou, em português, _ou_. Ele produz um valor verdadeiro se qualquer um dos valores dados à ele for verdadeiro.
 
-```javascript
-
-console.log(false || true);
+```js
+console.log(false || true)
 // → true
-
-console.log(false || false);
+console.log(false || false)
 // → false
-
 ```
 
-**Não** é escrito com uma exclamação `!`. É um operador unário que inverte o valor dado a ele - `!true` produz `false` e `!false` produz `true`.
+_Not_, em português _não_, é escrito usando um ponto de exclamação (`!`). Ele é um operador unário que inverte o valor que é dado à ele. Por exemplo, `!true` produz `false` e `!false` produz `true`.
 
-Quando misturamos estes operadores booleanos com operadores aritméticos e outros operadores, não é sempre óbvio quando o parênteses é necessário. Na prática, você precisa conhecer sobre os operadores que vimos antes, e que `||` tem o mais baixo nível de precedência, seguido do `&&`, e então os operadores de comparação (`>`, `==`, e outros), e depois o resto. Sendo assim, como vemos na expressão abaixo, os parênteses poucas vezes são necessários.
+Quando misturamos esses operadores Booleanos com operadores aritméticos e outros tipos de operadores, nem sempre é óbvio quando devemos usar ou não os parênteses. Na prática, você normalmente não terá problemas sabendo que, dos operadores que vimos até agora, `||` possui a menor precedência, depois vem o operador `&&`, em seguida vêm os operadores de comparação (`>`, `==`, etc) e, por último, quaisquer outros operadores. Essa ordem foi escolhida de tal forma que, em expressões típicas como o exemplo a seguir, poucos parênteses são realmente necessários:
 
-```javascript
-
-1 + 1 == 2 || 10 * 10 <= 100
-
+```js
+1 + 1 == 2 && 10 * 10 > 50
 ```
+
+O último operador lógico que iremos discutir não é unário nem binário, mas _ternário_, operando em três valores. Ele é escrito usando um ponto de interrogação e dois pontos, como mostrado abaixo:
+
+```js
+console.log(true ? 1 : 2);
+// → 1
+console.log(false ? 1 : 2);
+// → 2
+```
+
+Esse operador é chamado de operador _condicional_ (algumas vezes é chamado apenas de operador _ternário_, já que é o único operador desse tipo na linguagem). O valor presente à esquerda do ponto de interrogação “seleciona” qual dos outros dois valores será retornado. Quando ele for verdadeiro, o valor do meio é escolhido e, quando for falso, o valor à direita é retornado.
 
 ## Valores Indefinidos
 
-Temos dois valores especiais, `null` e `undefined`, que são usados para denotar a ausência de valores significativos. Eles são por si próprios valores, porém valores que não levam informação.
+Existem dois valores especiais, `null` e `undefined`, que são usados para indicar a ausência de um valor com significado. Eles são valores por si sós, mas não carregam nenhum tipo de informação.
 
-Muitas operações na linguagem que não produzem valores significativos (vamos ver algumas no próximo capítulo) vão produzir `undefined`, simplesmente porque elas tem que retornar *algum* valor.
+Muitas operações na linguagem que não produzem um valor com significado (você verá alguns mais para frente) retornarão `undefined` simplesmente porque eles precisam retornar _algum_ valor.
 
-A diferença de significado entre `undefined` e `null` é em grande parte desinteressante e um acidente no projeto do JavaScript. Nos casos que você realmente tiver que se preocupar com estes valores, eu recomendo tratá-los como substituíveis (mais sobre isso em um momento).
+A diferença de significado entre `undefined` e `null` é um acidente que foi criado no design do JavaScript, e não faz muita diferença na maioria das vezes. Nos casos em que você deve realmente se preocupar com esses valores, recomendo tratá-los como valores idênticos (vamos falar mais sobre isso em breve).
 
 ## Conversão Automática de Tipo
 
-Na introdução, eu mencionei que o JavaScript não iria atrapalhá-lo e aceitaria quase qualquer coisa que você o fornecesse, mesmo quando isso é confuso e errado. Isto é muito bem demonstrado por esta expressão:
+Na introdução, mencionei que o JavaScript tentar fazer o seu melhor para aceitar quase todos os programas que você fornecer, inclusive aqueles que fazem coisas bem estranhas. Isso pode ser demonstrado com as seguintes expressões:
 
-```javascript
-
+```js
 console.log(8 * null)
 // → 0
 console.log("5" - 1)
@@ -284,17 +259,24 @@ console.log("five" * 2)
 // → NaN
 console.log(false == 0)
 // → true
-
 ```
-Quando um operador é aplicado a um tipo de valor "errado", ele vai silenciosamente converter este valor para o tipo que quiser, usando um conjunto de regras que frequentemente não são as que você expera. O `null` na primeira expressão torna-se 0, o `"5"` na segunda expressão se torna `5` (de string para número), ainda na terceira expressão, o `+` tenta a concatenação de strings antes de tentar a adição numérica, o `1` é convertido em `"1"` (de número para string).
 
-Quando algo que não pode ser mapeado como um número de forma óbvia, do tipo `"five"` ou `undefined` é convertido para um número, o valor `NaN` é produzido. Operações aritméticas com `NaN` continuam produzindo `NaN`, então se você encontrar alguns destes resultados em algum local inesperado, procure por conversões acidentais de tipo.
+Quando um operador é aplicado a um tipo de valor “errado”, o JavaScript converterá, de forma silenciosa, esse valor para o tipo que ele desejar, usando uma série de regras que muitas vezes não é o que você deseja ou espera. Esse comportamento é chamado de _coerção de tipo_ (ou _conversão de tipo_). Portanto, na primeira expressão, `null` se torna `0` e, na segunda, a string `"5"` se torna o número `5`. Já na terceira expressão, o operador `+` tenta efetuar uma concatenação de string antes de tentar executar a adição numérica e, por isso, o número `1` é convertido para a string `"1"`.
 
-Quando comparamos coisas do mesmo tipo usando `==`, o resultado é bastante fácil de se prever - você vai obter `true` quando ambos os valores forem os mesmos. Mas quando os tipos diferem, o JavaScript usa um complicado e confuso conjunto de regras para determinar o que fazer. Eu não vou explicar isto precisamente, mas na maioria dos casos irá ocorrer a tentativa de conversão de um dos valores para o tipo do outro valor. Contudo, quando `null`ou `undefined`ocorrem em algum dos lados do operador, isso produzirá `true` somente se ambos os lados forem `null` ou `undefined`.
+Quando algo que não pode ser mapeado como um número de forma óbvia (tais como `"five"` ou `undefined`) é convertido para um número, o valor `NaN` é produzido. Quaisquer outras operações aritméticas realizadas com `NaN` continuam produzindo `NaN`, portanto, quando você perceber que está recebendo esse valor em algum lugar inesperado, procure por conversões acidentais de tipo.
 
-A última parte do comportamento é frequentemente muito útil. Quando você quer testar se um valor tem um valor real, em vez de ser `null` ou `undefined`, você pode simplesmente compará-lo a `null` com o operador `==` (ou `!=`).
+Quando comparamos valores do mesmo tipo usando o operador `==`, o resultado é fácil de se prever: você receberá verdadeiro quando ambos os valores forem o mesmo, exceto no caso de `NaN`. Por outro lado, quando os tipos forem diferentes, o JavaScript usa um conjunto de regras complicadas e confusas para determinar o que fazer, sendo que, na maioria dos casos, ele tenta apenas converter um dos valores para o mesmo tipo do outro valor. Entretanto, quando `null` ou `undefined` aparece em algum dos lados do operador, será produzido verdadeiro apenas se ambos os lados forem `null` ou `undefined`.
 
-Mas e se você quiser testar se algo se refere ao valor preciso `false`? As regras de conversão de strings e números para valores booleanos afirmam que `0`, `NaN` e empty strings contam como `false`, enquanto todos os outros valores contam como `true`. Por causa disso, expressões como `0 == false` e `"" == false` retornam `true`. Para casos assim, onde você **não** quer qualquer conversão automática de tipos acontecendo, existem dois tipos extras de operadores: `===` e `!==`. O primeiro teste se o valor é precisamente igual ao outro, e o segundo testa se ele não é precisamente igual. Então `"" === false` é falso como experado.
+```js
+console.log(null == undefined);
+// → true
+console.log(null == 0);
+// → false
+```
+
+O último exemplo é um comportamento que normalmente é bastante útil. Quando quiser testar se um valor possui um valor real ao invés de `null` ou `undefined`, você pode simplesmente compará-lo a `null` com o operador `==` (ou `!=`).
+
+Mas e se você quiser testar se algo se refere ao valor preciso `false`? As regras de conversão de strings e números para valores booleanos afirmam que `0`, `NaN` e empty strings contam como `false`, enquanto todos os outros valores contam como `true`. Por causa disso, expressões como `0 == false` e `"" == false` retornam `true`. Para casos assim, onde você **não** quer qualquer conversão automática de tipos acontecendo, existem dois tipos extras de operadores: `===` e `!==`. O primeiro teste se o valor é precisamente igual ao outro, e o segundo testa se ele não é precisamente igual. Então `"" === false` é falso como esperado.
 
 Usar os operadores de comparação de três caracteres defensivamente, para prevenir inesperadas conversões de tipo que o farão tropeçar, é algo que eu recomendo. Mas quando você tem certeza de que os tipos de ambos os lados serão iguais, ou que eles vão ser ambos `null`/`undefined`, não há problemas em usar os operadores curtos.
 

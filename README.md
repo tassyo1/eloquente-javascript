@@ -32,15 +32,21 @@
 1. [Node.js](https://github.com/braziljs/eloquente-javascript/blob/master/chapters/20-nodejs.md) - (**Parte 3: Node.js**)
 1. [Projeto: Website de Compartilhamento de Habilidades](https://github.com/braziljs/eloquente-javascript/blob/master/chapters/21-projeto-website-de-compartilhamento-de-habilidades.md)
 
-## Como Contribuir
+## Status Geral do Projeto 
 
-Veja nosso guia de contribuição [aqui](https://github.com/braziljs/eloquente-javascript/blob/master/CONTRIBUTING.md).
+As informações sobre o status e log de cada capítulo estão organizadas [nessa issue](https://github.com/braziljs/eloquente-javascript/issues/254).
+
+Atualmente, estamos melhorando o que já está traduzido, focando na qualidade e precisão da tradução e entendimento do texto como um todo, além de tentar aplicar a gramática mais correta possível. Vários [contribuidores](https://github.com/braziljs/eloquente-javascript/graphs/contributors) ajudaram em diferentes partes do livro e, por isso, existem diversas oportunidades de melhorias.
+
+## Como Contribuir?
+
+Se você tiver interesse em ajudar, criamos um [guia](https://github.com/braziljs/eloquente-javascript/blob/master/CONTRIBUTING.md) para ajudá-lo e, se tiver qualquer dúvida, basta abrir uma issue.
 
 ## Informações Importantes
 
 - Autor: **Marijn Haverbeke**
 - [Versão original](http://eloquentjavascript.net) deste livro.
 
-Licenciado sob a licença [Creative Commons attribution-noncommercial.](http://creativecommons.org/licenses/by-nc/3.0/).
+Licenciado sob a licença [Creative Commons attribution-noncommercial](http://creativecommons.org/licenses/by-nc/3.0/).
 
 Todo código neste livro também pode ser considerado sob a [licença MIT](http://opensource.org/licenses/MIT).

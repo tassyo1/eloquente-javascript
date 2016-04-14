@@ -385,7 +385,7 @@ console.log(drawTable(dataTable(MOUNTAINS)));
 //   … etcetera
 ```
 
-A função padrão `Object.keys` retorna um array com nomes de propriedades de um objeto. A linha do topo da tabela deve conter células sublinhadas que dão os nomes das colunas. Abaixo disso, os valores de todos os objetos no conjuto de dados aparecem como células normais - nós os extraímos mapeando sobre o array `keys` de modo que tenhamos certeza que a ordem das células é a mesma em todas as linhas.
+A função padrão `Object.keys` retorna um array com nomes de propriedades de um objeto. A linha do topo da tabela deve conter células sublinhadas que dão os nomes das colunas. Abaixo disso, os valores de todos os objetos no conjunto de dados aparecem como células normais - nós os extraímos mapeando sobre o array `keys` de modo que tenhamos certeza que a ordem das células é a mesma em todas as linhas.
 
 A tabela resultante se assemelha ao exemplo mostrado anteriormente, exceto que ela não alinha os números à direita na coluna `height`. Vamos chegar nessa parte em um instante.
 
@@ -393,7 +393,7 @@ A tabela resultante se assemelha ao exemplo mostrado anteriormente, exceto que e
 
 Quando especificamos uma interface, é possível incluir propriedades que não são métodos. Poderíamos ter definido `minHeight` e `minWidth` para simplesmente conter números. Mas isso teria exigido de nós computá-los no construtor, o que adicionaria código que não é estritamente relevante para *construção* do objeto. Isso pode causar problemas se, por exemplo, a célula interior de uma célula exterior mudou, onde nesse ponto o tamanho da célula sublinhada também deve mudar.
 
-Isso tem levado algumas pessoas a adotarem um princípio de nunca incluirem propriedades *nonmethod* em interfaces. Ao invés de acessarem diretamente o valor da propriedade, eles usam métodos `getSomething` e `setSomething` para ler e escrever propriedades. Esta abordagem tem a parte negativa de que você irá acabar escrevendo - e lendo - muitos métodos adicionais.
+Isso tem levado algumas pessoas a adotarem um princípio de nunca incluírem propriedades *nonmethod* em interfaces. Ao invés de acessarem diretamente o valor da propriedade, eles usam métodos `getSomething` e `setSomething` para ler e escrever propriedades. Esta abordagem tem a parte negativa de que você irá acabar escrevendo - e lendo - muitos métodos adicionais.
 
 Felizmente, o JavaScript fornece uma técnica que fornece o melhor de ambos os mundos. Nós podemos especificar propriedades que, do lado de fora, parecem propriedades normais mas secretamente tem métodos associados a elas.
 
@@ -481,4 +481,116 @@ console.log(drawTable(dataTable(MOUNTAINS)));
 // → … beautifully aligned table
 ```
 
-http://eloquentjavascript.net/06_object.html#p_XiWor+mk9j
+Herança é uma parte fundamental da orientação a objetos tradicional, ao lado de encapsulamento e polimorfismo. Mas enquanto os dois últimos sejam agora geralmente considerados como ideias brilhantes, herança é algo controverso.
+
+A principal razão para isso é que este tópico é geralmente confundido com polimorfismo, vendido como uma ferramenta mais poderosa do que realmente é, e subsequentemente usado em excesso de diversas horríveis formas. Onde encapsulamento e polimorfismo podem ser usados para *separar* pedaços de código de cada um, reduzindo o emaranhamento de todo o programa, herança fundamentalmente vincula os tipos, criando *mais* emaranhados.
+
+Você pode ter polimorfismo sem herança, como nós vimos. Eu não vou dizer para você evitar herança completamente. Eu a uso regularmente em meus programas. Mas você deve vê-la como um leve truque desonesto que vai ajudá-lo a definir novos tipos com menos código, não como um grande princípio de organização de código. Uma forma mais apropriada de extender tipos é através da composição, como `UnderlinedCell` constrói em outra célula simplesmente armazenando-a em uma propriedade e um método posterior a chama nos seus próprios métodos.
+
+## O operador `instanceof`
+
+Ocasionalmente é útil saber se um objeto foi derivado de um construtor em específico. Para isso, o JavaScript fornece um operador binário chamado `instaceof`.
+
+```js
+console.log(new RTextCell("A") instanceof RTextCell);
+// → true
+console.log(new RTextCell("A") instanceof TextCell);
+// → true
+console.log(new TextCell("A") instanceof RTextCell);
+// → false
+console.log([1] instanceof Array);
+// → true
+```
+
+O operador vai olhar através dos tipos herdados. Um `RTextCell` é uma instância de `TextCell` porque `RTextCell.prototype` deriva de `TextCell.prototype`. O operador pode ser aplicado a construtores padrão como `Array`. Praticamente todos os objetos são uma instância de `Object`.
+
+## Resumo
+
+Então objetos são mais complicados do que inicialmente eu os retratei. Eles tem protótipos, que são outros objetos, e vão agir como se tivessem propriedades que eles não tem caso seu protótipo tenha essa propriedade. Objetos simples tem `Object.prototype` como seus protótipos.
+
+Construtores, que são funções cujos nomes usualmente iniciam com uma letra maiúscula, podem ser usador com o operador `new` para criar objetos. O protótipo do novo objeto será o objeto encontrado na propriedade `prototype` da função construtora. Você pode fazer bom uso disso adicionando propriedades que todos os valores de um tipo  compartilham em seus protótipos. O operador `instanceof` pode, dado um objeto e um construtor, dizer se o objeto é uma instância deste construtor.
+
+Algo útil a se fazer com objetos é especificar uma interface para eles e dizer para todos quer irão supostamente conversar com seu objeto a fazer isso somente por essa interface. O resto dos detalhes que constroem seu objeto estão agora *encapsulados*, escondidos atrás da interface.
+
+Uma vez que você esteja conversando em termos de interfaces, quem diz que apenas um tipo de objeto pode implementar essa interface? Ter diferentes objetos expondo a mesma interface é chamado de *polimorfismo*. Isso é muito útil.
+
+Quando implementando vários tipos que diferem apenas em alguns detalhes, pode ser útil simplesmente criar o protótipo do seu novo tipo derivando do protótipo do seu antigo tipo e ter seu novo construtor chamando o antigo. Isso lhe dá um tipo similar de objeto ao antigo mas que permite que você adicione ou sobrescreva propriedades quando necessário.
+
+## Exercícios
+
+### Um tipo de vetor
+
+Escreva um construtor `Vector` que represente um vetor em duas dimensões do espaço. Ele recebe os parâmetros `x` e `y` (números), que deve salvar em propriedades de mesmo nome.
+
+Dê ao protótipo de `Vector` dois métodos, `plus` e `minus`, que pegam outro vetor como parâmetro e retornam um novo vetor que tem a soma ou diferença dos valores `x` e `y` dos dois vetores (o vetor que está em `this` e o passado no parâmetro).
+
+Adicione uma propriedade getter `length` ao protótipo que calcula o tamanho do vetor - isto é, a distância do ponto (`x, y`) até a origem (0,0).
+
+```js
+// Your code here.
+
+console.log(new Vector(1, 2).plus(new Vector(2, 3)));
+// → Vector{x: 3, y: 5}
+console.log(new Vector(1, 2).minus(new Vector(2, 3)));
+// → Vector{x: -1, y: -1}
+console.log(new Vector(3, 4).length);
+// → 5
+```
+
+**Dicas**
+
+Sua solução pode seguir o padrão do construtor `Rabbit` deste capítulo de forma bem semelhante.
+
+Adicionar uma propriedade getter ao construtor pode ser feita com a função `Object.defineProperty`. Para calcular a distância do ponto `(0, 0)` até `(x, y)` você pode usar o teorema de Pitágoras, que diz que o quadrado da distância que estamos procurando é igual ao quadrado da coordenada x mais o quadrado da coordenada y. Assim, `√(x2 + y2)` é o número que você quer, e `Math.sqrt` é o caminho para você calcular a raiz quadrada no JavaScript.
+
+## Outra célula
+
+Implemente uma célula do tipo `StretchCell(inner, width, height)` que se adeque a [interface da célula da tabela](#definindo-uma-tabela) descrita anteriormente neste capítulo. Ela deve envolver outra célula (como `UnderlinedCell` faz) e assegurar que a célula resultante tem pelo menos a largura (`width`) e altura (`height`) especificada, mesmo se a célula interior for naturalmente menor.
+
+```js
+// Your code here.
+
+var sc = new StretchCell(new TextCell("abc"), 1, 2);
+console.log(sc.minWidth());
+// → 3
+console.log(sc.minHeight());
+// → 2
+console.log(sc.draw(3, 2));
+// → ["abc", "   "]
+```
+
+**Dicas**
+
+Você vai ter que armazenar os 3 argumentos construtores na instância do objeto. Os métodos `minWidth` e `minHeight` devem chamar através dos métodos correspondentes na célula interna (`inner`), mas assegure-se que nenhum número menor que o tamanho dado é retornado (possivelmente usando `Math.max`).
+
+Não se esqueça de adicionar um método `draw` que simplesmente encaminha a chamada para a célula interior.
+
+### Interface sequencial
+
+Projete uma *interface* que abstraia interações sobre uma coleção de valores. Um objeto que fornece esta interface representa uma sequência, e a interface deve de alguma forma tornar possível para o código que usa este objeto iterar sobre uma sequência, olhando para o valor dos elementos de que ela é composta e tendo alguma forma de saber quando o fim da sequência foi atingido.
+
+Quando você tiver especificado sua interface, tente escrever uma função `logFive` que pega um objeto sequencial e chama `console.log` para seus primeiros 5 elementos - ou menos, se a sequência tiver menos do que cinco elementos.
+
+Então implemente um tipo de objeto `ArraySeq` que envolve um array e permite interação sobre o array usando a interface que você desenvolveu. Implemente outro tipo de objeto `RangeSeq` que itera sobre um intervalo de inteiros (recebendo os argumentos `from` e `to` em seu construtor).
+
+```js
+// Your code here.
+
+logFive(new ArraySeq([1, 2]));
+// → 1
+// → 2
+logFive(new RangeSeq(100, 1000));
+// → 100
+// → 101
+// → 102
+// → 103
+// → 104
+```
+
+**Dicas**
+
+Uma forma de resolver isso é fornecendo objetos sequenciais *state*, que significa que suas propriedades são alteradas no seu processo de uso. Você pode armazenar um contador que indica quão longe o objeto sequenciais avançaram.
+
+Sua interface vai precisar expor ao menos uma forma de pegar o próximo elemento e encontrar se a iteração já chegou no fim da sequencia. É tentador fazer isso em um método, `next`, que retorna `null` ou `undefined` quando a sequência chegar ao fim. Mas agora você tem um problema quando a sequência realmente tiver `null`. Então um método separado (ou uma propriedade getter) para descobrir se o fim foi alcançado é provavelmente preferível.
+
+Outra solução é evitar mudar o estado do objeto. Você pode expor um método para pegar o elemento atual (sem o auxílio de nenhum contador) e outro para pegar uma nova sequência que representa os elementos restantes depois do atual (ou um valor especial se o fim da sequência tiver sido atingido). Isso é bem elegante - um valor sequencial vai "permanecer ele mesmo" mesmo depois de ter sido usado e pode ser compartilhado com outro código sem a preocupação sobre o que pode acontecer com ele. Isso é, infelizmente, algo um pouco ineficiente numa linguagem como JavaScript porque envolve criar vários objetos durante a iteração.
